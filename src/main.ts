@@ -27,8 +27,6 @@ anuVis(scene);
 // await babylonManager.start();
 // anuMultiuserVis(scene);
 
-
-
 engine.runRenderLoop(() => {
     scene.render();
 });
