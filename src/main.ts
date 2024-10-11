@@ -3,6 +3,7 @@ import { GridMaterial } from '@babylonjs/materials';
 import "@babylonjs/inspector";
 import * as anu from '@jpmorganchase/anu';
 //import { anuVis } from './anuVis';
+import { benuVis } from './anu_boilerplate_ben';
 import { anuVis } from './anu_boilerplate_compelte';
 import { MultiuserManager } from './MultiuserManager';
 import { anuMultiuserVis } from './anuMultiuserVis-completed';
@@ -32,38 +33,39 @@ let env = scene.createDefaultEnvironment();
 
 let scenes = {
     'David': anuVis,
+    'Ben': benuVis
 }
 
 
-try {
-    scenes['David'](scene);
-} catch(e){
-    console.error(e);
-}
+// try {
+//     scenes['Ben'](scene);
+// } catch(e){
+//     console.error(e);
+// }
 
 
 // Save this for later when we want to see everyones together. 
 
-// for (const [key, value] of Object.entries(scenes)) {
-//     try {
-//         value(scene);
-//     } catch (e) {
-//         console.warn("Error in: " + key + " scene")
-//         console.warn(e);
-//     }
-//   }
+for (const [key, value] of Object.entries(scenes)) {
+    try {
+        value(scene);
+    } catch (e) {
+        console.warn("Error in: " + key + " scene")
+        console.warn(e);
+    }
+  }
 
-// let allCharts = anu.selectName(Object.keys(scenes), scene); 
-
-
-// let layout = anu.planeLayout('layout', {selection: allCharts, rows: 1, margin: new BABYLON.Vector2(1,1)}, scene);
-
-// layout.root.position.y = 1;
+let allCharts = anu.selectName(Object.keys(scenes), scene); 
 
 
-// let babylonManager = new MultiuserManager(scene, engine);
-// await babylonManager.start();
-// anuMultiuserVis(scene);
+let layout = anu.planeLayout('layout', {selection: allCharts, rows: 1, margin: new BABYLON.Vector2(1,1)}, scene);
+
+layout.root.position.y = 1;
+
+
+let babylonManager = new MultiuserManager(scene, engine);
+await babylonManager.start();
+anuMultiuserVis(scene);
 
 
 
