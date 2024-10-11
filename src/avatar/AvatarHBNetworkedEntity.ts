@@ -322,49 +322,49 @@ export class AvatarHB extends NetworkedEntity<PlayerSchema>{
 				0);
 
 			
-			var leftHandParentInvertWorldMatrix = (this.avatarFullBoneNodes["LeftHand"].parent as BABYLON.TransformNode).computeWorldMatrix(true).clone();
-			leftHandParentInvertWorldMatrix = leftHandParentInvertWorldMatrix.invert();
-			const newLeftControllerPos = BABYLON.Vector3.TransformCoordinates(new BABYLON.Vector3(this.schema.leftHandPos.x, this.schema.leftHandPos.y, this.schema.leftHandPos.z), leftHandParentInvertWorldMatrix);
+			// var leftHandParentInvertWorldMatrix = (this.avatarFullBoneNodes["LeftHand"].parent as BABYLON.TransformNode).computeWorldMatrix(true).clone();
+			// leftHandParentInvertWorldMatrix = leftHandParentInvertWorldMatrix.invert();
+			// const newLeftControllerPos = BABYLON.Vector3.TransformCoordinates(new BABYLON.Vector3(this.schema.leftHandPos.x, this.schema.leftHandPos.y, this.schema.leftHandPos.z), leftHandParentInvertWorldMatrix);
 
-			const leftControllerRotQ = new BABYLON.Quaternion(this.schema.leftHandRot.x, -this.schema.leftHandRot.y, -this.schema.leftHandRot.z, this.schema.leftHandRot.w);
-			let newLeftControllerRotQ = leftControllerRotQ.multiply(BABYLON.Quaternion.FromRotationMatrix(leftHandParentInvertWorldMatrix));
-			newLeftControllerRotQ.normalize();
+			// const leftControllerRotQ = new BABYLON.Quaternion(this.schema.leftHandRot.x, -this.schema.leftHandRot.y, -this.schema.leftHandRot.z, this.schema.leftHandRot.w);
+			// let newLeftControllerRotQ = leftControllerRotQ.multiply(BABYLON.Quaternion.FromRotationMatrix(leftHandParentInvertWorldMatrix));
+			// newLeftControllerRotQ.normalize();
 			
-			BABYLON.Animation.CreateAndStartAnimation("AvatarLeftHandPosAnim",
-				this.avatarFullBoneNodes["LeftHand"],
-				"position", 60, this.framesToCompensate,
-				this.avatarFullBoneNodes["LeftHand"].position,
-				newLeftControllerPos, 0);
+			// BABYLON.Animation.CreateAndStartAnimation("AvatarLeftHandPosAnim",
+			// 	this.avatarFullBoneNodes["LeftHand"],
+			// 	"position", 60, this.framesToCompensate,
+			// 	this.avatarFullBoneNodes["LeftHand"].position,
+			// 	newLeftControllerPos, 0);
 			
 			
 			
-			BABYLON.Animation.CreateAndStartAnimation("AvatarLeftHandRotAnim",
-				this.avatarFullBoneNodes["LeftHand"],
-				"rotationQuaternion", 60, this.framesToCompensate,
-				this.avatarFullBoneNodes["LeftHand"].rotationQuaternion,
-				newLeftControllerRotQ,
-				0);
+			// BABYLON.Animation.CreateAndStartAnimation("AvatarLeftHandRotAnim",
+			// 	this.avatarFullBoneNodes["LeftHand"],
+			// 	"rotationQuaternion", 60, this.framesToCompensate,
+			// 	this.avatarFullBoneNodes["LeftHand"].rotationQuaternion,
+			// 	newLeftControllerRotQ,
+			// 	0);
 
-			var rightControllerParentInvertWorldMatrix = (this.avatarFullBoneNodes["RightHand"].parent as BABYLON.TransformNode).computeWorldMatrix(true).clone();
-			rightControllerParentInvertWorldMatrix = rightControllerParentInvertWorldMatrix.invert();
-			const newRightControllerPos = BABYLON.Vector3.TransformCoordinates(new BABYLON.Vector3(this.schema.rightHandPos.x, this.schema.rightHandPos.y, this.schema.rightHandPos.z), rightControllerParentInvertWorldMatrix);
+			// var rightControllerParentInvertWorldMatrix = (this.avatarFullBoneNodes["RightHand"].parent as BABYLON.TransformNode).computeWorldMatrix(true).clone();
+			// rightControllerParentInvertWorldMatrix = rightControllerParentInvertWorldMatrix.invert();
+			// const newRightControllerPos = BABYLON.Vector3.TransformCoordinates(new BABYLON.Vector3(this.schema.rightHandPos.x, this.schema.rightHandPos.y, this.schema.rightHandPos.z), rightControllerParentInvertWorldMatrix);
 
-			const rightControllerRotQ = new BABYLON.Quaternion(this.schema.rightHandRot.x, -this.schema.rightHandRot.y, -this.schema.rightHandRot.z, this.schema.rightHandRot.w);
-			let newRightControllerRotQ = rightControllerRotQ.multiply(BABYLON.Quaternion.FromRotationMatrix(rightControllerParentInvertWorldMatrix));
-			newRightControllerRotQ.normalize();
+			// const rightControllerRotQ = new BABYLON.Quaternion(this.schema.rightHandRot.x, -this.schema.rightHandRot.y, -this.schema.rightHandRot.z, this.schema.rightHandRot.w);
+			// let newRightControllerRotQ = rightControllerRotQ.multiply(BABYLON.Quaternion.FromRotationMatrix(rightControllerParentInvertWorldMatrix));
+			// newRightControllerRotQ.normalize();
 			
-			BABYLON.Animation.CreateAndStartAnimation("AvatarRightHandPosAnim",
-				this.avatarFullBoneNodes["RightHand"],
-				"position", 60, this.framesToCompensate,
-				this.avatarFullBoneNodes["RightHand"].position,
-				newRightControllerPos, 0);
+			// BABYLON.Animation.CreateAndStartAnimation("AvatarRightHandPosAnim",
+			// 	this.avatarFullBoneNodes["RightHand"],
+			// 	"position", 60, this.framesToCompensate,
+			// 	this.avatarFullBoneNodes["RightHand"].position,
+			// 	newRightControllerPos, 0);
 
-			BABYLON.Animation.CreateAndStartAnimation("AvatarrightHandRotAnim",
-				this.avatarFullBoneNodes["RightHand"],
-				"rotationQuaternion", 60, this.framesToCompensate,
-				this.avatarFullBoneNodes["RightHand"].rotationQuaternion,
-				newRightControllerRotQ,
-				0);
+			// BABYLON.Animation.CreateAndStartAnimation("AvatarrightHandRotAnim",
+			// 	this.avatarFullBoneNodes["RightHand"],
+			// 	"rotationQuaternion", 60, this.framesToCompensate,
+			// 	this.avatarFullBoneNodes["RightHand"].rotationQuaternion,
+			// 	newRightControllerRotQ,
+			// 	0);
 
 
 
@@ -393,49 +393,49 @@ export class AvatarHB extends NetworkedEntity<PlayerSchema>{
 				0);
 
 
-			var leftHandParentInvertWorldMatrix = (this.avatarFullBoneNodes["LeftHand"].parent as BABYLON.TransformNode).computeWorldMatrix(true).clone();
-			leftHandParentInvertWorldMatrix = leftHandParentInvertWorldMatrix.invert();
-			const newLeftControllerPos = BABYLON.Vector3.TransformCoordinates(new BABYLON.Vector3(this.schema.leftHandPos.x, this.schema.leftHandPos.y, this.schema.leftHandPos.z), leftHandParentInvertWorldMatrix);
+			// var leftHandParentInvertWorldMatrix = (this.avatarFullBoneNodes["LeftHand"].parent as BABYLON.TransformNode).computeWorldMatrix(true).clone();
+			// leftHandParentInvertWorldMatrix = leftHandParentInvertWorldMatrix.invert();
+			// const newLeftControllerPos = BABYLON.Vector3.TransformCoordinates(new BABYLON.Vector3(this.schema.leftHandPos.x, this.schema.leftHandPos.y, this.schema.leftHandPos.z), leftHandParentInvertWorldMatrix);
 
-			const leftControllerRotQ = new BABYLON.Quaternion(this.schema.leftHandRot.x, -this.schema.leftHandRot.y, -this.schema.leftHandRot.z, this.schema.leftHandRot.w);
-			let newLeftControllerRotQ = leftControllerRotQ.multiply(BABYLON.Quaternion.FromRotationMatrix(leftHandParentInvertWorldMatrix));
-			newLeftControllerRotQ.normalize();
-			newLeftControllerRotQ = newLeftControllerRotQ.multiply(BABYLON.Quaternion.FromEulerVector(new BABYLON.Vector3(0, -Math.PI / 2, -Math.PI / 2)))
+			// const leftControllerRotQ = new BABYLON.Quaternion(this.schema.leftHandRot.x, -this.schema.leftHandRot.y, -this.schema.leftHandRot.z, this.schema.leftHandRot.w);
+			// let newLeftControllerRotQ = leftControllerRotQ.multiply(BABYLON.Quaternion.FromRotationMatrix(leftHandParentInvertWorldMatrix));
+			// newLeftControllerRotQ.normalize();
+			// newLeftControllerRotQ = newLeftControllerRotQ.multiply(BABYLON.Quaternion.FromEulerVector(new BABYLON.Vector3(0, -Math.PI / 2, -Math.PI / 2)))
 
-			BABYLON.Animation.CreateAndStartAnimation("AvatarLeftHandPosAnim",
-				this.avatarFullBoneNodes["LeftHand"],
-				"position", 60, this.framesToCompensate,
-				this.avatarFullBoneNodes["LeftHand"].position,
-				newLeftControllerPos, 0);
+			// BABYLON.Animation.CreateAndStartAnimation("AvatarLeftHandPosAnim",
+			// 	this.avatarFullBoneNodes["LeftHand"],
+			// 	"position", 60, this.framesToCompensate,
+			// 	this.avatarFullBoneNodes["LeftHand"].position,
+			// 	newLeftControllerPos, 0);
 			
-			BABYLON.Animation.CreateAndStartAnimation("AvatarLeftHandRotAnim",
-				this.avatarFullBoneNodes["LeftHand"],
-				"rotationQuaternion", 60, this.framesToCompensate,
-				this.avatarFullBoneNodes["LeftHand"].rotationQuaternion,
-				newLeftControllerRotQ,
-				0);
+			// BABYLON.Animation.CreateAndStartAnimation("AvatarLeftHandRotAnim",
+			// 	this.avatarFullBoneNodes["LeftHand"],
+			// 	"rotationQuaternion", 60, this.framesToCompensate,
+			// 	this.avatarFullBoneNodes["LeftHand"].rotationQuaternion,
+			// 	newLeftControllerRotQ,
+			// 	0);
 
-			var rightControllerParentInvertWorldMatrix = (this.avatarFullBoneNodes["RightHand"].parent as BABYLON.TransformNode).computeWorldMatrix(true).clone();
-			rightControllerParentInvertWorldMatrix = rightControllerParentInvertWorldMatrix.invert();
-			const newRightControllerPos = BABYLON.Vector3.TransformCoordinates(new BABYLON.Vector3(this.schema.rightHandPos.x, this.schema.rightHandPos.y, this.schema.rightHandPos.z), rightControllerParentInvertWorldMatrix);
+			// var rightControllerParentInvertWorldMatrix = (this.avatarFullBoneNodes["RightHand"].parent as BABYLON.TransformNode).computeWorldMatrix(true).clone();
+			// rightControllerParentInvertWorldMatrix = rightControllerParentInvertWorldMatrix.invert();
+			// const newRightControllerPos = BABYLON.Vector3.TransformCoordinates(new BABYLON.Vector3(this.schema.rightHandPos.x, this.schema.rightHandPos.y, this.schema.rightHandPos.z), rightControllerParentInvertWorldMatrix);
 
-			const rightControllerRotQ = new BABYLON.Quaternion(this.schema.rightHandRot.x, -this.schema.rightHandRot.y, -this.schema.rightHandRot.z, this.schema.rightHandRot.w);
-			let newRightControllerRotQ = rightControllerRotQ.multiply(BABYLON.Quaternion.FromRotationMatrix(rightControllerParentInvertWorldMatrix));
-			newRightControllerRotQ.normalize();
-			newRightControllerRotQ = newRightControllerRotQ.multiply(BABYLON.Quaternion.FromEulerVector(new BABYLON.Vector3(0, Math.PI / 2, Math.PI / 2)))
+			// const rightControllerRotQ = new BABYLON.Quaternion(this.schema.rightHandRot.x, -this.schema.rightHandRot.y, -this.schema.rightHandRot.z, this.schema.rightHandRot.w);
+			// let newRightControllerRotQ = rightControllerRotQ.multiply(BABYLON.Quaternion.FromRotationMatrix(rightControllerParentInvertWorldMatrix));
+			// newRightControllerRotQ.normalize();
+			// newRightControllerRotQ = newRightControllerRotQ.multiply(BABYLON.Quaternion.FromEulerVector(new BABYLON.Vector3(0, Math.PI / 2, Math.PI / 2)))
 
-			BABYLON.Animation.CreateAndStartAnimation("AvatarRightHandPosAnim",
-				this.avatarFullBoneNodes["RightHand"],
-				"position", 60, this.framesToCompensate,
-				this.avatarFullBoneNodes["RightHand"].position,
-				newRightControllerPos, 0);
+			// BABYLON.Animation.CreateAndStartAnimation("AvatarRightHandPosAnim",
+			// 	this.avatarFullBoneNodes["RightHand"],
+			// 	"position", 60, this.framesToCompensate,
+			// 	this.avatarFullBoneNodes["RightHand"].position,
+			// 	newRightControllerPos, 0);
 
-			BABYLON.Animation.CreateAndStartAnimation("AvatarrightHandRotAnim",
-				this.avatarFullBoneNodes["RightHand"],
-				"rotationQuaternion", 60, this.framesToCompensate,
-				this.avatarFullBoneNodes["RightHand"].rotationQuaternion,
-				newRightControllerRotQ,
-				0);
+			// BABYLON.Animation.CreateAndStartAnimation("AvatarrightHandRotAnim",
+			// 	this.avatarFullBoneNodes["RightHand"],
+			// 	"rotationQuaternion", 60, this.framesToCompensate,
+			// 	this.avatarFullBoneNodes["RightHand"].rotationQuaternion,
+			// 	newRightControllerRotQ,
+			// 	0);
 
 		}
 

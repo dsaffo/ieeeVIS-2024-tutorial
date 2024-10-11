@@ -62,6 +62,7 @@ export class MultiuserManager {
     }
     else {
       //add your remote serverEndpoint
+      this.serverEndpoint = "wss://fictional-space-funicular-r4p4jvj76xp359r9-2567.app.github.dev/"
     }
 
     this.colyseus = new Colyseus.Client(this.serverEndpoint);

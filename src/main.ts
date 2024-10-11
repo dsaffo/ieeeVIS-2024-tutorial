@@ -37,35 +37,40 @@ let scenes = {
 }
 
 
-// try {
-//     scenes['Ben'](scene);
-// } catch(e){
-//     console.error(e);
-// }
+// multiplayer stuff
+let babylonManager = new MultiuserManager(scene, engine);
+await babylonManager.start();
+
+//Run one person
+
+try {
+    scenes['David'](scene);
+} catch(e){
+    console.error(e);
+}
 
 
 // Save this for later when we want to see everyones together. 
 
-for (const [key, value] of Object.entries(scenes)) {
-    try {
-        value(scene);
-    } catch (e) {
-        console.warn("Error in: " + key + " scene")
-        console.warn(e);
-    }
-  }
+// for (const [key, value] of Object.entries(scenes)) {
+//     try {
+//         value(scene);
+//     } catch (e) {
+//         console.warn("Error in: " + key + " scene")
+//         console.warn(e);
+//     }
+//   }
 
-let allCharts = anu.selectName(Object.keys(scenes), scene); 
-
-
-let layout = anu.planeLayout('layout', {selection: allCharts, rows: 1, margin: new BABYLON.Vector2(1,1)}, scene);
-
-layout.root.position.y = 1;
+// let allCharts = anu.selectName(Object.keys(scenes), scene); 
 
 
-let babylonManager = new MultiuserManager(scene, engine);
-await babylonManager.start();
-anuMultiuserVis(scene);
+// let layout = anu.planeLayout('layout', {selection: allCharts, rows: 1, margin: new BABYLON.Vector2(1,1)}, scene);
+
+// layout.root.position.y = 1;
+
+
+
+//anuMultiuserVis(scene);
 
 
 

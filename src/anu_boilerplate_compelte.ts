@@ -1,7 +1,10 @@
 import * as anu from '@jpmorganchase/anu';
 import * as d3 from "d3";
-import { Scene, HemisphericLight, ArcRotateCamera, Vector3 } from '@babylonjs/core';
+import { Scene, HemisphericLight, ArcRotateCamera, Vector3, ExecuteCodeAction, ActionManager, Color3, StandardMaterial} from '@babylonjs/core';
 import iris from './data/iris.json' assert {type: 'json'};  //Our data
+import { MultiuserManager } from './MultiuserManager';
+import { claimOwnership } from './network/collabxr-decorator';
+import { releaseOwnership } from './network/collabxr-decorator';
 
 //Create and export a function that takes a Babylon engine and returns a Babylon Scene
 export function anuVis(scene){
@@ -27,16 +30,79 @@ export function anuVis(scene){
   //Create sphere meshes for each row of our data and set their visual encodings using method chaining
   //These spheres are created as children of the CoT due to chart.bind()
   //Remember that in this case, 'CoT' is the Babylon TransformNode and 'chart' is the Anu Selection
+
+  const hoverDataPointHandler = (message: any) => {
+ 
+    const selectedMesh = spheres.filter((d, n, i) => {
+      return (n.id == message.dataPointID)
+    }).selected[0];
+  
+    const scaleVec = new Vector3(message.scaleVec.x, message.scaleVec.y, message.scaleVec.z); 
+    selectedMesh.scaling = scaleVec;
+  
+  }
+
+  MultiuserManager.getInstance().hoverEventHandler = hoverDataPointHandler;
+
+  let hoverMaterial = new StandardMaterial('hover', scene);
+
   let spheres = chart.bind('sphere', { diameter: 0.02 }, iris)
                      .positionX((d) => scaleX(d.sepalLength))
                      .positionY((d) => scaleY(d.petalLength))
                      .positionZ((d) => scaleZ(d.sepalWidth))
-                     .material((d) => scaleC(d.species))   //We set the material to change the spheres' color as our scaleC() was configured to return a StandardMaterial
+                     .material((d) => scaleC(d.species))  
+                     .action((d, n, i) => new ExecuteCodeAction(
+                      ActionManager.OnPointerOverTrigger,
+                          () => {
+                          
+                            console.log("index: " + i + " , " + JSON.stringify(d));
+                           MultiuserManager.getInstance().hoverEventObj = {"dataPointID" : n.id, "scaleVec" : {x:1.5,y:1.5,z:1.5}};
+                          }
+                    ))
+                    .action((d, n, i) => new ExecuteCodeAction(
+                      ActionManager.OnPointerOutTrigger,
+                          () => {
+                           
+                            console.log("index: " + i + " , " + JSON.stringify(d));
+                            MultiuserManager.getInstance().hoverEventObj = { "dataPointID": n.id, "scaleVec": { x: 1.0, y: 1.0, z: 1.0 } };
+                
+                          }
+                    ))
+                    .prop("id", (d, n, i)=>{
+                      return CoT.name + "-"+i;
+                    }) //We set the material to change the spheres' color as our scaleC() was configured to return a StandardMaterial
 
   //Use the createAxes() Anu helper function to create the axes for us based on our D3 scale functions
   anu.createAxes('test', scene, { parent: chart, scale: { x: scaleX, y: scaleY, z: scaleZ } });
 
+  chart.positionUI({billboard: false})
+  .scaleUI({ minimum: 0.5, maximum: 2 })
+  .rotateUI({billboard: false});
+
   chart.positionY(1);
+
+MultiuserManager.getInstance().plotCoT = CoT;
+MultiuserManager.getInstance().plotCoT.position = new Vector3(0, 2, 1.5);
+
+anu.selectName("centerPositionUI", scene).action(new ExecuteCodeAction(
+  ActionManager.OnPickDownTrigger,
+  () => {
+    console.log("centerPositionUI OnPickDownTrigger")
+    claimOwnership(MultiuserManager.getInstance().lobbyRoom, "plotCoT");
+  }
+)).action(new ExecuteCodeAction(
+  ActionManager.OnPickOutTrigger,
+  () => {
+    console.log("centerPositionUI OnPickOutTrigger")
+    releaseOwnership(MultiuserManager.getInstance().lobbyRoom, "plotCoT");
+  }
+)).action(new ExecuteCodeAction(
+  ActionManager.OnPickUpTrigger,
+    () => {
+      console.log("centerPositionUI OnPickUpTrigger")
+      releaseOwnership(MultiuserManager.getInstance().lobbyRoom, "plotCoT");
+    }
+  ))
 
 
 
