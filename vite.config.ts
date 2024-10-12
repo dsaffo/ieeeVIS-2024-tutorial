@@ -5,6 +5,6 @@ export default defineConfig({
     format: 'es',
   },
   server: {
-    hmr: false
+    hmr: true
   }
 })

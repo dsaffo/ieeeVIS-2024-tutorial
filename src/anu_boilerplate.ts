@@ -3,7 +3,7 @@ import iris from './data/iris.json' assert {type: 'json'};
 import {Vector3, ActionManager, InterpolateValueAction} from '@babylonjs/core'; 
 import {extent, scaleOrdinal, scaleLinear, map,} from "d3";
 
-export const anuVis = function(scene){
+export const yourNameVis = function(scene){
 
   /*
   Step 1: Create scale functions for our visualization using d3.
@@ -38,7 +38,7 @@ export const anuVis = function(scene){
 
 
   /*
-  Step 5: Add some interactions using actions and anu facet position UI
+  Step 5: Add some interactions 
   */
 
   
